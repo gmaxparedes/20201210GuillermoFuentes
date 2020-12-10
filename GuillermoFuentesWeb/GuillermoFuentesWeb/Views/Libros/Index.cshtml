@@ -1,0 +1,72 @@
+﻿@model IEnumerable<GuillermoFuentesWeb.Models.Libros>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.book_title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.book_author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.publisher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.publisher_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.keyword)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.book_title_index)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.book_title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.book_author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.publisher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.publisher_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.keyword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.book_title_index)
+            </td>
+            <td>
+                @Html.ActionLink("Prestar", "Prestar", new { Cliente = ViewBag.Cliente, IdLibro = item.id })               
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

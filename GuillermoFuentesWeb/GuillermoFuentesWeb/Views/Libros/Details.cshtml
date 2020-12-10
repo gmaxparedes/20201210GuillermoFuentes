@@ -1,0 +1,69 @@
+﻿@model IEnumerable<GuillermoFuentesWeb.Models.ClienteLibro>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdLibro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaEntrega)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaRegreso)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdLibro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaEntrega)
+                </td>
+
+                <td>
+                    @if (item.FechaRegreso != null && item.FechaRegreso > DateTime.Now.AddYears(-10))
+                    {
+                        @Html.DisplayFor(modelItem => item.FechaRegreso)
+                    }
+                </td>
+                <td>
+                    @{
+                        var i = "01/01/0001 0:00:00";
+                        if (item.FechaRegreso == Convert.ToDateTime(i))
+                        {
+                            @Html.ActionLink("Regresar", "RegresarLibro", new { id = item.Id })
+                        }
+
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
